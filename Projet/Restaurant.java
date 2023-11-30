@@ -1,43 +1,71 @@
-import java.nio.file.Path;
+import java.util.Stack;
 import java.util.HashMap;
 
+enum Jour{
+    MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE //Fermé Lundi
+}
+
 public class Restaurant {
-    private HashMap<String, Integer> reserve = new HashMap<>();//De la forme : "Tomate" = 3 
-    private String[] factures;//De la forme : [1] => "lien_vers_facture1"
-    private int nbrFactures = 0;
-    private Table[] tables = new Table[10];
-    private HashMap<String, Personnel> employes = new HashMap<>();
-    private int nbrCuisiniers = 0;
-    private int nbrServeurs = 0;
-    private int nbrManagers = 0;
-    private int nbrBarman = 0;
+    private HashMap<String, Personnel> listePersonnel = new HashMap<>();
+
+    private Stack<String> listeEq1 = new Stack<>();//Liste équipe 1
+    private Stack<String> listeEq2 = new Stack<>();//Liste équipe 2
+
+    private String jourCourant = "Ma";
     public Boolean ouvert = false;
 
-    public void ajouterEmployes(Personnel personne){
-        this.employes.put(personne.nom, personne);
+
+    public void ajoutListePersonnel(String nom, Personnel newGuy) {// 1 ou 2
+        this.listePersonnel.put(nom, newGuy);
+        
     }
-    public void supprimerEmployes(String personne){
-        this.employes.remove(personne);
-    }
-    public void supprimerFactures(){
-        this.factures.clear();
-    }
-    public void ouverture(){
-        if(nbrBarman >= 1 && nbrCuisiniers >= 4 && nbrManagers >= 1 && nbrServeurs >= 2){
-            this.ouvert = true;
+    public void ajoutEq(int numEquipe, String nom, String job){
+        if(numEquipe == 1){//equipe 1
+            this.listeEq1.push(nom+"("+job+")");
         }
+        else{//equipe 2
+            this.listeEq2.push(nom+"("+job+")");
+        }
+    }
+    public void supprimerEmployes(String nom, Personnel perso){
+        this.listePersonnel.remove(nom);
+    }
+    public void afficherEquipe1(){
+        Stack<String> listeEq = (Stack<String>)this.listeEq1.clone();
+        System.out.println("Equipe 1 :");
+        while(!listeEq.empty()){
+            System.out.println(listeEq.pop());
+        }
+        System.out.println();
+    }
+    public void afficherEquipe2(){
+        Stack<String> listeEq = (Stack<String>)this.listeEq2.clone();
+        System.out.println("Equipe 2 :");
+        while(!listeEq.empty()){
+            System.out.println(listeEq.pop());
+        }
+        System.out.println();
+    }
+
+    public void estOuvert(Personnel equipes){
+        if(this.jourCourant == "Ma" || this.jourCourant == "Me" || this.jourCourant == "S"){//Equipe 1
+            this.ouvert = equipes.equipe1Prete(this.jourCourant);
+        }
+        else if(this.jourCourant == "L"){// Toujours fermé le lundi
+            this.ouvert = false;
+            System.out.println("Aujourd'hui ("+jourCourant+"), le restaurant est fermé !");
+            System.out.println();
+        }
+        else{//Equipe 2
+            this.ouvert = equipes.equipe2Prete(this.jourCourant);
+        }
+    }
+    public void setJourCourant(String jourCourant) {
+        this.jourCourant = jourCourant;
     }
     public void fermeture(){
         this.ouvert = false;
     }
-    public HashMap<String, Integer> getReserve(){
-        return this.reserve;
-    }
-    public void ajouterFacture(String path){
-        this.factures[nbrFactures] = path;
-        this.nbrFactures += 1;
-    }
-
 }
 
 
