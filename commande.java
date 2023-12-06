@@ -17,11 +17,7 @@ public class commande{
     }
 
     public Queue<String> get_commande(){
-  
-        for(String produit: commande){
 
-            System.out.println(produit); // Test
-        }
 
         return commande;
 

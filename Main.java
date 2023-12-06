@@ -3,7 +3,7 @@ public class Main {
  
     public static void main(String[] args) {
 
-    // Tables du restaurant
+    // Table du restaurant
     table t1 =  new table(0,6);
 
 
@@ -13,7 +13,10 @@ public class Main {
 
     // Création de la commande
     commande co1 = new commande(t1.commander());
-    co1.get_commande();
+    
+    // Registre de facture (+1 facture)
+    Facture f1 =new Facture();
+    f1.ajouter_factures(co1.get_commande());
 
     }
 
