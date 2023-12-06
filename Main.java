@@ -5,7 +5,10 @@ public class Main {
 
     // Table du restaurant
     table t1 =  new table(0,6);
-
+    table t2 =  new table(1,6);
+    table t3 =  new table(2,4);
+    table t4 =  new table(3,4);
+    table t5 =  new table(4,4);
 
     // Association client à une table
     client c1 = new client(6);  

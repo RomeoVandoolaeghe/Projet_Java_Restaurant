@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.Queue;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class table {
     
@@ -9,6 +11,7 @@ public class table {
     private int nbrePlaces;
     private int placeoccuper;
     private boolean occuper_table;
+    private static List<table> instances = new ArrayList<>(); // Liste des tables
 
 
     table(int arg_idTable,int arg_nbrePlaces){
@@ -18,6 +21,7 @@ public class table {
         this.nbrePlaces = arg_nbrePlaces;
         this.occuper_table = false;
         this.placeoccuper = 0;
+        instances.add(this); // Tableau avec les tables
     }
 
     public int getIdTable() {
