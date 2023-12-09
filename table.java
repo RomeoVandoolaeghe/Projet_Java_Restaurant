@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.Queue;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class table {
     private int nbrePlaces;
     private int placeoccuper;
     private boolean occuper_table;
-    private static List<table> instances = new ArrayList<>(); // Liste des tables
+    private static List<table> tableau = new ArrayList<>(); // Liste des tables
 
 
     table(int arg_idTable,int arg_nbrePlaces){
@@ -21,7 +23,7 @@ public class table {
         this.nbrePlaces = arg_nbrePlaces;
         this.occuper_table = false;
         this.placeoccuper = 0;
-        instances.add(this); // Tableau avec les tables
+        tableau.add(this); // Tableau avec les tables
     }
 
     public int getIdTable() {
@@ -47,6 +49,12 @@ public class table {
 
     }
 
+
+    public List<table> gettableautable(){
+
+        return tableau;
+    }
+
     public void liberer_table(){
 
         this.nom_serveur = "Pas de Table";
@@ -55,6 +63,8 @@ public class table {
 
     }
 
+
+
     public void associer_serveur(String arg_nom_serveur,int arg_placeoccuper){
 
         this.nom_serveur = arg_nom_serveur;
@@ -62,6 +72,39 @@ public class table {
         this.placeoccuper = arg_placeoccuper;
         
     }
+
+
+
+    public table dispo_table(int arg_nombres_clients){
+
+        table TableChoisis = null;
+        int minPlacesRestantes = Integer.MAX_VALUE;
+        
+
+        for (table instance : tableau) {
+
+            int places = instance.getNbrePlaces();
+            int placesRestantes = places - arg_nombres_clients;
+
+            if (!instance.getoccuper_table() && places >= arg_nombres_clients && placesRestantes < minPlacesRestantes) {
+
+                minPlacesRestantes = placesRestantes;
+                TableChoisis = instance;
+           
+            }
+        }
+
+        if (TableChoisis == null) {
+            
+            System.out.println("Plus de tables disponibles pour " + arg_nombres_clients + " clients.");
+        }else{
+
+            System.out.println("La table n° "+ TableChoisis.getIdTable() +" va etre associé "+ "avec " + (TableChoisis.getNbrePlaces() - arg_nombres_clients) + " restantes.");
+        }
+
+        return TableChoisis;
+    }
+
 
     public Queue<String> commander(){
 
