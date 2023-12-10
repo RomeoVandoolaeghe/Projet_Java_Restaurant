@@ -22,7 +22,7 @@ public class Personnel{
             resto.ajoutEq(2, newGuy.getNom(), "Barman");
         }          
         else{
-            System.out.println("Il y a déjà suffisament de barman.");
+            System.out.println("Il y a déjà suffisament de barmen.");
         }  
     }
     public void ajouterEmployes(Manager newGuy, Restaurant resto){

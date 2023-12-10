@@ -1,10 +1,16 @@
+package tablesClients;
+
 import java.util.Scanner;
 import java.util.Queue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class table {
     
@@ -16,7 +22,7 @@ public class table {
     private static List<table> tableau = new ArrayList<>(); // Liste des tables
 
 
-    table(int arg_idTable,int arg_nbrePlaces){
+    public table(int arg_idTable,int arg_nbrePlaces){
 
         this.idTable = arg_idTable;
         this.nom_serveur = "Pas de serveur";
@@ -106,32 +112,27 @@ public class table {
     }
 
 
-    public Queue<String> commander(){
+    public Queue<String> commander_plat(LinkedHashMap<String, Integer> argMap) {
+      
+        Queue<String> commande_final = new LinkedList<>();
+        Scanner scanner = new Scanner(System.in); // Création d'une instance de Scanner
+        int clients_table = getplaceoccuper(); // Remplacez ceci par le nombre de clients
+        System.out.println("Quel plat désirez vous?");
 
-        int clients_table = placeoccuper;
-        Queue<String>liste_commande = new LinkedList<>();
 
-        Scanner scanner = new Scanner(System.in);
+        for(int e=0;e<clients_table;e++){
 
+             String repas = scanner.nextLine();
 
-            for(int i=0;i<clients_table;i++){
-                System.out.println("Vos choix de boisson ?");
-                String boisson = scanner.nextLine();
-                liste_commande.add(boisson);
+         
+        }
+ 
 
-            }
-
-            for(int i=0;i<clients_table;i++){
-
-                System.out.println("Vos choix de plats ?");
-                String repas = scanner.nextLine();
-                liste_commande.add(repas);
-            }
-
-            scanner.close(); 
-            return liste_commande;
-    }
-
-   
+        scanner.close();
+        return commande_final;
 
 }
+
+}
+
+

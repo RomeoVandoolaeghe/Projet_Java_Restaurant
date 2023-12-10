@@ -1,3 +1,5 @@
+package tablesClients;
+
 import java.util.Queue;
 import java.io.BufferedWriter;
 import java.io.FileWriter;

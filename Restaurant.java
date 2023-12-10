@@ -66,6 +66,6 @@ public class Restaurant {
     public void fermeture(){
         this.ouvert = false;
     }
-
-
 }
+
+
