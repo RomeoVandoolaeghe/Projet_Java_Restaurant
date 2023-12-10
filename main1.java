@@ -35,6 +35,7 @@ public class main1 {
         if(!Smith6.estOccupe()){//S'il est pas occupé
             Smith6.nouvelleTableAssignees(nbrTables);
             s1.associer_serveur(Smith6.getNom(),c1.getNbrClients());
+            //System.out.println(c1.getNbrClients());
         }
         else{
             Smith7.nouvelleTableAssignees(nbrTables);
@@ -52,7 +53,7 @@ public class main1 {
 
        LinkedHashMap<String,Integer> m1 = menu.afficherMenu(reserve);// Affiche menu
 
-      //t1.commander_plat(m1);
+      t1.commander_plat(m1,c1.getNbrClients());
 
 
 
