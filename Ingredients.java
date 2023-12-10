@@ -23,7 +23,6 @@ public class Ingredients {
 
         return ingredientsMap;
 
-
     }
 
     public Integer getQuantite(String arg_nom) {

@@ -38,6 +38,8 @@ public class Menu {
 
     public LinkedHashMap<String, Integer> find_ingredient(String arg_nom_plat){
 
+        // Fonction pour trouver les ingrédients pour chacune des recettes dans le menu
+
         switch (arg_nom_plat) {
             case "Salade Tomate":
                 plat_ingredient.put("Salade",1);
@@ -92,6 +94,71 @@ public class Menu {
         }
 
         return plat_ingredient;
+    }
+
+
+
+
+    public LinkedHashMap<String, Integer> find_ingredient_sub(String arg_nom_plat){
+
+        // Fonction pour trouver les ingrédients à soustraire
+
+        LinkedHashMap <String,Integer> arg_map = new LinkedHashMap<>();
+
+        switch (arg_nom_plat) {
+            case "Salade Tomate":
+                arg_map.put("Salade",1);
+                arg_map.put("Tomate",1);
+                break;
+            case "Salade":
+                arg_map.put("Salade",1);
+                break;
+            case "Potage Oignion":
+                arg_map.put("Oignon",3);
+                break;
+            case "Potage Champignons":
+                arg_map.put("Oignon",3);
+                break;
+            case "Potage Tomate":
+                arg_map.put("Tomate",3);
+                break;
+            case "Burger Complet":
+                arg_map.put("Pain",1);
+                arg_map.put("Salade",1);
+                arg_map.put("Tomate",1);
+                arg_map.put("Steak",1);
+                break;
+            case "Burger sans tomate":
+                arg_map.put("Pain",1);
+                arg_map.put("Salade",1);
+                arg_map.put("Steak",1);
+                break;
+            case "Burger Steak":
+                arg_map.put("Pain",1);
+                arg_map.put("Steak",1);
+                break;
+            case "Pizza fromage":
+                arg_map.put("Pate Pizza",1);
+                arg_map.put("Tomate",1);
+                arg_map.put("Fromage",1);
+                break;
+             case "Pizza Champignon":
+                arg_map.put("Pate Pizza",1);
+                arg_map.put("Tomate",1);
+                arg_map.put("Fromage",1);
+                arg_map.put("Champignon",1);
+                break;            
+             case "Pizza Chorizo":
+                arg_map.put("Pate Pizza",1);
+                arg_map.put("Tomate",1);
+                arg_map.put("Fromage",1);
+                arg_map.put("Chorizo",1);
+                break;   
+            default:
+                break;
+        }
+
+        return arg_map;
     }
 
 

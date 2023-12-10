@@ -156,6 +156,50 @@ public class table {
 
     }
 
+
+     public Queue<String> commander_boisson(LinkedHashMap<String, Integer> argMap,int arg_nbrclients) {
+      
+        Queue<String> commande_final = new LinkedList<>();
+        int clients_table =arg_nbrclients ; // Remplacez ceci par le nombre de clients
+        Scanner scanner = new Scanner(System.in); // Création d'une instance de Scanner
+        String repas = "";
+
+
+             for(int e=0;e<clients_table;e++){
+
+                System.out.println("Quel boisson désirez vous ?");
+                repas = scanner.nextLine();
+
+                if(argMap.containsKey(repas)){
+
+                    commande_final.add(repas);
+
+                }else{
+                    do{
+
+                        System.out.println("Quel plat désirez vous ?");
+                        repas = scanner.nextLine();
+
+                    }while(argMap.containsKey(repas));
+
+                    commande_final.add(repas);
+                }
+
+                System.out.println("Quel plat désirez vous?");
+                 repas = scanner.nextLine();
+             }
+         
+         scanner.close();
+
+         for(String element : commande_final) {
+            System.out.println(element);
+        }
+
+        return commande_final;
+    
+
+    }
+
 }
 
 

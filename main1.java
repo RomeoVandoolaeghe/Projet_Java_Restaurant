@@ -53,11 +53,11 @@ public class main1 {
 
        LinkedHashMap<String,Integer> m1 = menu.afficherMenu(reserve);// Affiche menu
 
-      t1.commander_plat(m1,c1.getNbrClients());
 
+      Smith8.travail(t1.commander_boisson(m1,c1.getNbrClients())); // Envoie au bar des boissons
 
+    
 
-
-
+      
     }
 }
